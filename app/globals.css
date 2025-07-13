@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --background: #030303;
+  --primary: 0, 112, 243, 1;
+
+  --primaryText: 255, 255, 255, 1;
+  --textMuted: 255, 255, 255, 0.8;
+  --lightBorder: 255, 255, 255, 0.3;
+
+  --feature-gradient-start: rgba(166, 166, 255, 0.05);
+  --feature-gradient-end: rgba(232, 232, 253, 0.02);
+}
+
+.light {
+  --background: #ffffff;
+  --primary: 0, 112, 243, 1;
+  --primaryText: 0, 0, 0, 1;
+  --textMuted: 0, 0, 0, 0.8;
+  --lightBorder: 0, 0, 0, 0.3;
+  --feature-gradient-start: rgb(230, 230, 230);
+  --feature-gradient-end: rgb(230, 230, 230);
+}
+
+.bg-feature-gradient {
+  background: linear-gradient(
+    to bottom right,
+    var(--feature-gradient-start),
+    var(--feature-gradient-end)
+  );
+}
+
+body {
+  font-family: Manrope, Helvetica, sans-serif;
+}
