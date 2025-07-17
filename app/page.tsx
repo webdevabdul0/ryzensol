@@ -9,37 +9,51 @@ import Testimonials from "./Landing/Testimonials";
 import FAQ from "./Landing/FAQ";
 import Contact from "./Landing/Contact";
 import Portfolio from "./Landing/Portfolio";
+import Partners from "./Landing/Partners";
+import ExclusiveServices from "./Landing/ExclusiveServices";
 const Page: React.FC = () => {
   return (
-    <div className="w-full overflow-hidden  bg-background">
-      <div className="mt-12 mx-auto  flex flex-col items-center max-w-7xl relative w-full">
-        <header className="w-full">
+    <div className="w-full overflow-hidden bg-gray-50">
+      <div className=" flex flex-col items-center  relative w-full">
+        <header className="w-full relative                        ">
           <Header />
         </header>
-
-        <main>
+        <main id="main-content" className="w-full">
           <Hero />
-          <Features />
-          <div id="Portfolio">
+         
+         <div id="Partners">
+<Partners />
+
+         </div>
+         
+          
+          <ExclusiveServices />
+        
+          <div id="Portfolio" >
             <Portfolio />
           </div>
-          <ExtendedFeatures />
+
+          
+
           <div id="Testimonials">
             <Testimonials />
           </div>
-          <div id="Services">
+
+
+         
+
+          
+          <div id="Services" className="w-full flex flex-col items-center">
             <Services />
           </div>
-          <div id="Faq">
-            {" "}
+          <div id="Faq" className="text-black w-full flex flex-col items-center">
             <FAQ />
           </div>
-          <div id="Contact">
+          <div id="Contact" className="w-full flex flex-row items-center  bg-background ">
             <Contact />
           </div>
         </main>
       </div>
-
       <footer className="w-full relative">
         <Footer />
       </footer>

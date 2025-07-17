@@ -28,19 +28,19 @@ const Qna = ({
       {items.map(({ id, question, answer }) => (
         <div
           key={id}
-          className="w-full border-b-2 border-b-white/20 flex flex-col py-5 mb-5"
+          className="w-full border-b-2 border-b-black/20 flex flex-col py-5 mb-5"
         >
           <div
             className="w-full flex flex-row justify-between cursor-pointer"
             onClick={() => toggleAnswer(id)}
           >
-            <h3 className="text-base md:text-xl font-semibold text-start mb-3 sm:mb-5 text-primaryText select-none">
+            <h3 className="text-base md:text-2xl font-semibold text-start mb-3 sm:mb-5 text-black select-none">
               {question}
             </h3>
             {openAnswers[id] ? (
-              <FaMinus color="white" className="ml-5   size-5 md:size-6 " />
+              <FaMinus color="black" className="ml-5   size-5 md:size-6 " />
             ) : (
-              <FaPlus color="white" className="ml-5   size-5 md:size-6" />
+              <FaPlus color="black" className="ml-5   size-5 md:size-6" />
             )}
           </div>
 
@@ -53,7 +53,7 @@ const Qna = ({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-base sm:text-base text-textMuted font-medium select-none">
+            <p className="text-base sm:text-lg text-black/80 font-medium select-none">
               {answer}
             </p>
           </motion.div>

@@ -3,18 +3,17 @@ import { HoverEffect } from "../components/ui/card-hover-effect";
 
 const ExtendedFeatures = () => {
   return (
-    <div className="relative mt-12 md:mt-24  mx-5">
+    <div className="   mx-5 max-w-[1440px]">
+
+
       <div className="flex flex-col items-center">
+
         <h2 className="text-2xl md:text-5xl font-bold text-center mb-2 sm:mb-5 text-primaryText">
-          Elevate Your Web Experience
-          <br />
-          with Cutting-Edge Development
+          Elevate Your Brand with Ryzen Solutions<br />
+          Full-Service Digital Innovation
         </h2>
         <p className="text-base sm:text-lg md:text-xl text-center  font-light text-textMuted">
-          Explore my expertise in AI-powered applications, UI/UX design, and
-          high-performance web solutions. From seamless front-end interfaces to
-          AI-driven automation, I build products that enhance productivity, user
-          experience, and scalability.
+          Discover our expertise in UI/UX design, AI automation, web development, WordPress, branding, SEO, digital marketing, and hosting. Our team delivers seamless, scalable, and innovative solutions to help your business grow in the digital age.
         </p>
       </div>
 

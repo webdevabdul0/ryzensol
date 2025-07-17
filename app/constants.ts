@@ -1,43 +1,15 @@
 export const navLinks = [
-  {
-    title: "Testimonials",
-    href: "#Testimonials",
-  },
-  {
-    title: "Services",
-    href: "#Services",
-  },
-  {
-    title: "FAQ",
-    href: "#Faq",
-  },
-  {
-    title: "Contact",
-    href: "#Contact",
-  },
+  { title: "Testimonials", href: "#Testimonials" },
+  { title: "Services", href: "#Services" },
+  { title: "FAQ", href: "#Faq" },
+  { title: "Contact", href: "#Contact" },
 ];
 
 export const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/webdevabdul0/",
-    icon: "/Contact/1.png",
-  },
-  {
-    name: "Behance",
-    href: "https://www.behance.net/abdulhanan2003",
-    icon: "/Contact/2.png",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/in/abdul-hanan-6b5b73248",
-    icon: "/Contact/3.png",
-  },
-  {
-    name: "Fiverr",
-    href: "https://www.fiverr.com/abdulhanan0123",
-    icon: "/Contact/4.png",
-  },
+  { name: "GitHub", href: "https://github.com/ryzensolutions/", icon: "/Contact/1.png" },
+  { name: "Behance", href: "https://www.behance.net/ryzensolutions", icon: "/Contact/2.png" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/ryzensolutions", icon: "/Contact/3.png" },
+  { name: "Email", href: "mailto:contact@ryzensolutions.com", icon: "/Contact/4.png" },
 ];
 
 export interface Product {

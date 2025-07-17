@@ -13,8 +13,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Abdul Hanan",
-  description: "Designer & Developer Portfolio",
+  title: "Ryzen Solutions",
+  description: "Ryzen Solutions – Full-Service Digital Agency: UI/UX Design, AI Automation, Web Development, WordPress, Branding, SEO, Digital Marketing, Hosting & Maintenance.",
 };
 
 export default function RootLayout({

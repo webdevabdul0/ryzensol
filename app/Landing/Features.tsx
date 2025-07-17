@@ -9,7 +9,7 @@ const Features = () => {
   return (
     <div className=" mt-12 md:mt-24 mx-5 ">
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 ">
-        <GlareCard className="max-w-full border border-white/20  flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden">
+        <GlareCard className="max-w-full border border-white/20  flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden bg-gray-900 text-white">
           <PiPaintBrushBold size={60} className="text-primaryText" />
           <h2 className="text-primaryText font-semibold text-lg sm:text-xl   xl:text-2xl text-center">
             Modern UI/UX
@@ -21,7 +21,7 @@ const Features = () => {
           </p>
         </GlareCard>
 
-        <GlareCard className="max-w-full border border-white/10 flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden">
+        <GlareCard className="max-w-full border border-white/10 flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden bg-gray-900 text-white">
           <PiBrainDuotone size={60} color="white" />
           <h2 className="text-primaryText font-semibold text-lg sm:text-xl   xl:text-2xl text-center">
             AI-Powered Apps
@@ -33,7 +33,7 @@ const Features = () => {
           </p>
         </GlareCard>
 
-        <GlareCard className="max-w-full border border-white/10 flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden">
+        <GlareCard className="max-w-full border border-white/10 flex flex-col justify-center items-center px-7 py-6 sm:py-12 gap-2 sm:gap-5 rounded-3xl overflow-hidden bg-gray-900 text-white">
           <PiLightningBold size={60} color="white" />
           <h2 className="text-primaryText font-semibold text-lg sm:text-xl   xl:text-2xl text-center">
             Fast & Scalable

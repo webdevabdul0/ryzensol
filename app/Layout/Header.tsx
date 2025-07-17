@@ -14,10 +14,13 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full">
-      <div className=" flex flex-row justify-between lg:hidden mx-4 sm:mx-8 ">
+    <div className="w-full bg-black ">
+
+<div className="max-w-[1440px] mx-auto pt-12 ">
+
+ <div className=" flex flex-row justify-between lg:hidden mx-4 sm:mx-8 ">
         <h3 className="text-xl text-primaryText tracking-wide uppercase font-bold">
-          Abdul Hanan
+          Ryzen Solutions
         </h3>
         <FaBars size={24} color="white" onClick={toggleMenu} className="z-20" />
         <AnimatePresence>
@@ -67,13 +70,13 @@ const Header = () => {
       </div>
 
       <div className=" flex-row justify-center gap-5 hidden lg:flex mx-4 xl:mx-0 ">
-        <div className="flex flex-row justify-center items-center rounded-tl-3xl rounded-lg bg-white/5 px-5 py-3">
+        <div className="flex flex-row justify-center items-center rounded-tl-3xl rounded-lg   px-5 py-3">
           <h3 className="text-xl text-primaryText tracking-wide uppercase font-bold">
-            Abdul Hanan
+            Ryzen Solutions
           </h3>
         </div>
 
-        <div className="flex-1 flex flex-row justify-start items-center rounded-br-3xl rounded-lg bg-white/5 px-5 py-3">
+        <div className="flex-1 flex flex-row justify-start items-center rounded-br-3xl rounded-lg   px-5 py-3">
           <nav>
             <ul className="flex flex-row text-sm  xl:text-base items-center gap-8">
               {navLinks.map((link) => (
@@ -113,6 +116,11 @@ const Header = () => {
           </ul>
         </div>
       </div>
+
+</div>
+
+
+     
     </div>
   );
 };
