@@ -1,18 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { items } from "../constants";
 import { HoverEffect } from "../components/ui/card-hover-effect";
 import GradientBlob from "../components/GradientBlob";
-
-type FilterType = "all" | "development" | "design";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Portfolio = () => {
-  const [filter, setFilter] = useState<FilterType>("all");
-
-  const filteredItems =
-    filter === "all" ? items : items.filter((item) => item.category === filter);
-
-  const projects = filteredItems.map((item) => ({
+  // Only show all items, no filters
+  const projects = items.map((item) => ({
     title: item.name,
     description: item.desc,
     link: item.href,
@@ -21,47 +17,72 @@ const Portfolio = () => {
     githubUrl: item.githubUrl,
   }));
 
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    // Animate heading
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    // Animate cards with stagger
+    const cards = document.querySelectorAll<HTMLElement>(".portfolio-card");
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 85%",
+        },
+      }
+    );
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-24 relative">
-
-
-
-
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8">
+   <div ref={headingRef} className="flex flex-col items-center">
+   <h2
+        
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8"
+      >
         Our Portfolio
       </h2>
-      <div className="flex justify-center space-x-2 sm:space-x-4 mb-10">
-        <button
-          onClick={() => setFilter("all")}
-          className={`px-4 py-2 text-sm sm:text-base rounded-lg transition-colors duration-300 border border-gray-200 shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 ${
-            filter === "all"
-              ? "bg-blue-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100"
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilter("development")}
-          className={`px-4 py-2 text-sm sm:text-base rounded-lg transition-colors duration-300 border border-gray-200 shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 ${
-            filter === "development"
-              ? "bg-blue-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100"
-          }`}
-        >
-          Development
-        </button>
-        <button
-          onClick={() => setFilter("design")}
-          className={`px-4 py-2 text-sm sm:text-base rounded-lg transition-colors duration-300 border border-gray-200 shadow-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 ${
-            filter === "design"
-              ? "bg-blue-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-100"
-          }`}
-        >
-          Design
-        </button>
-      </div>
+
+      <p
+            
+              className="text-base md:text-lg lg:text-2xl text-center text-gray-800 mb-12 max-w-3xl"
+            >
+              We Provide Innovative Marketing And Design Solutions That Make A Real Impact. Our Team Of Creative Experts Collaborates With You To Craft Strategies And Visuals That Elevate Your Brand And Drive Meaningful Results.
+            </p>
+    
+    </div>
+
+
+      {/* No filters */}
+      {/* Cards with staggered animation */}
       <HoverEffect items={projects} />
     </div>
   );

@@ -28,7 +28,7 @@ export const HoverEffect = ({
       {items.map((item, idx) => (
         <div key={item.title + idx} className="p-4">
           <motion.div
-            className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full flex flex-col group shadow-sm"
+            className="portfolio-card  bg-white/50 border border-gray-200 rounded-lg overflow-hidden h-full flex flex-col group shadow-sm"
             whileHover={{ y: -5, boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
             transition={{ duration: 0.2 }}
           >
@@ -64,17 +64,17 @@ export const HoverEffect = ({
               </div>
             </div>
             <div className="p-4 flex flex-col flex-grow">
-              <h3 className="font-bold text-gray-900 text-lg mb-2">
+              <h3 className="font-bold text-gray-900 text-xl mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-sm flex-grow">
+              <p className="text-gray-600 text-base flex-grow">
                 {item.description}
               </p>
               <div className="flex flex-wrap gap-2 mt-4">
                 {item.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
+                    className="text-sm bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
                   >
                     {tech}
                   </span>

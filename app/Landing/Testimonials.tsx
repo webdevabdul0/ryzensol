@@ -3,6 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 
 
+
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
 const testimonial = [
   {
     quote:
@@ -159,6 +164,10 @@ const Testimonials = () => {
     return null;
   }
 
+
+
+
+
   return (
     <section className="relative py-24 ">
       {/* Gradient blobs */}
@@ -168,14 +177,23 @@ const Testimonials = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col items-center">
             <div className="text-center">
-              <p className="text-lg font-medium text-gray-600 font-pj">
-                {testimonial.length} people have said how good Ryzen Solutions
-              </p>
-              <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">
-                Our happy clients say about us
-              </h2>
-            </div>
+            <div className="flex flex-col items-center">
+   <h2
+        
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8"
+      >
+        What Our Clients Say
+      </h2>
 
+      <p
+              
+              className="text-base md:text-lg lg:text-2xl text-center text-gray-800 mb-4 max-w-3xl"
+            >
+              Discover how our creative solutions and dedicated service have made a real impact for our clients. Here’s what they have to say about working with Ryzen Solutions.
+            </p>
+    
+    </div>
+    </div>
            
 
             <div className="relative mt-10 md:mt-24 md:order-2 w-full">
