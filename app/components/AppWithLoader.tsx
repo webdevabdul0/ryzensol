@@ -30,6 +30,7 @@ const ASSETS = [
   "/logo.png",
   "/Hero/video/2.mp4",
   "/Hero/video/4.mp4",
+  "/Hero/video/about.jpg",
   "/Portfolio/project (1).jpg",
   "/Portfolio/project (2).jpg",
   "/Portfolio/project (3).jpg",

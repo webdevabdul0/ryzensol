@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -51,7 +52,7 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
       {/* Logo or Site Name */}
       <div className="flex items-center gap-2">
-        <img src="/logo.png" alt="Logo" className="w-10 h-10 rounded" />
+        <Image src="/logo.png" alt="Logo" width={40} height={40} className="w-10 h-10 rounded" />
         <span className="font-bold text-xl tracking-wide">Ryzensol</span>
       </div>
       {/* Navigation */}
@@ -65,16 +66,17 @@ const Footer = () => (
       {/* Social Icons */}
       <div className="flex gap-4">
         {social.map((item) => (
-          <a
+          <Link
             key={item.name}
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-primary transition"
             aria-label={item.name}
+            passHref
           >
             {item.icon}
-          </a>
+          </Link>
         ))}
       </div>
     </div>

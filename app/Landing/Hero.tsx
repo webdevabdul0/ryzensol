@@ -3,6 +3,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import gsap from "gsap";
+import Link from "next/link";
 
 
 import { AvatarGroup } from "../components/ui/avatar-group";
@@ -104,10 +105,8 @@ const Hero = () => {
             className="flex flex-row justify-end mt-2 sm:mt-3 md:mt-4 gap-2 sm:gap-4 w-full sm:w-auto"
             ref={buttonContainer}
           >
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/about"
               className="
                 shadow-[0_4px_14px_0_rgb(0,118,255,39%)]
                 hover:shadow-[0_6px_20px_rgba(0,118,255,23%)]
@@ -132,8 +131,8 @@ const Hero = () => {
                 sm:w-auto
               "
             >
-              Download Profile
-            </a>
+              About Us
+            </Link>
             <a href="#Contact" className="w-full sm:w-auto">
               <button className="p-[2px] sm:p-[3px] relative rounded-full w-full sm:w-auto">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full" />
@@ -169,9 +168,8 @@ const Hero = () => {
           Driving Results For 1,500+ Leading Brands
         </span>
       </div>
-      {/* Decorative Blurs */}
-      <div className="w-[200px] h-[140px] sm:w-[350px] sm:h-[220px] md:w-[682px] md:h-[569px] bg-[#0070F3] absolute blur-[80px] sm:blur-[140px] md:blur-[224px] rounded-full -z-50 opacity-20 -translate-x-6 sm:-translate-x-12 md:-translate-x-20 top-0 left-0"></div>
-      <div className="w-[120px] h-[120px] sm:w-[220px] sm:h-[220px] md:size-[542px] bg-[#0070F3] absolute blur-[60px] sm:blur-[120px] md:blur-[224px] rounded-full -z-50 opacity-10 right-0 bottom-0"></div>
+     
+      
     </section>
   );
 };

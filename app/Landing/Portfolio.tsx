@@ -78,8 +78,7 @@ const Portfolio = () => {
             
               className="text-base md:text-lg lg:text-2xl text-center text-gray-800 mb-12 max-w-3xl"
             >
-              We Provide Innovative Marketing And Design Solutions That Make A Real Impact. Our Team Of Creative Experts Collaborates With You To Craft Strategies And Visuals That Elevate Your Brand And Drive Meaningful Results.
-            </p>
+Explore a curated selection of projects where strategy, design, and technology come together. From UI/UX design to AI automation and web development, our work reflects the results we deliver for startups, SaaS platforms, and growing brands.            </p>
     
     </div>
 

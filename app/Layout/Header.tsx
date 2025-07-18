@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { navLinks, socialLinks } from "../../app/constants";
+import Link from "next/link";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -16,7 +17,7 @@ const Header = () => {
   return (
     <div className="w-full bg-black ">
 
-<div className="max-w-[1440px] mx-auto pt-12 ">
+<div className="max-w-[1440px] mx-auto pt-12 pb-6 ">
 
  <div className=" flex flex-row justify-between lg:hidden mx-4 sm:mx-8 ">
         <h3 className="text-xl text-primaryText tracking-wide uppercase font-bold">
@@ -52,13 +53,13 @@ const Header = () => {
                   <ul className="flex flex-col  items-center gap-8 ">
                     {navLinks.map((link) => (
                       <li key={link.href}>
-                        <a
+                        <Link
                           href={link.href}
                           onClick={toggleMenu}
                           className="text-textMuted hover:text-white/50 transition duration-300 font-normal"
                         >
                           {link.title}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -81,12 +82,12 @@ const Header = () => {
             <ul className="flex flex-row text-sm  xl:text-base items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-textMuted hover:text-white/50 transition duration-300 font-normal"
                   >
                     {link.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -99,10 +100,11 @@ const Header = () => {
           <ul className="flex flex-row gap-4">
             {socialLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={link.href}
+                  passHref
                 >
                   <Image
                     src={link.icon}
@@ -110,7 +112,7 @@ const Header = () => {
                     width={24}
                     height={24}
                   />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

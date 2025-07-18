@@ -6,7 +6,6 @@ import ExtendedFeatures from "./Landing/ExtendedFeatures";
 import Services from "./Landing/Services";
 import Footer from "./Layout/Footer";
 import Testimonials from "./Landing/Testimonials";
-import FAQ from "./Landing/FAQ";
 import Contact from "./Landing/Contact";
 import Portfolio from "./Landing/Portfolio";
 import Partners from "./Landing/Partners";
@@ -48,9 +47,7 @@ const Page: React.FC = () => {
           <div  className="w-full flex flex-col items-center">
             <Services />
           </div>
-          <div id="Faq" className="text-black w-full flex flex-col items-center">
-            <FAQ />
-          </div>
+         
           <div id="Contact" className="w-full flex flex-row items-center  bg-background ">
             <Contact />
           </div>
