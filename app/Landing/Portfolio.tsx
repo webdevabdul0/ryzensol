@@ -39,23 +39,26 @@ const Portfolio = () => {
         }
       );
     }
-    // Animate cards with stagger
+    // Animate cards with stagger and reversal
     const cards = document.querySelectorAll<HTMLElement>(".portfolio-card");
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: "top 85%",
-        },
-      }
-    );
+    if (cards.length > 0) {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cards[0].parentElement,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };

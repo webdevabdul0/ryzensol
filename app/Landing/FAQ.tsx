@@ -1,5 +1,8 @@
-import React from "react";
+"use client"
+import React, { useRef, useEffect } from "react";
 import Qna from "../components/Qna";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const QuestionsAnswers = [
   {
@@ -41,13 +44,56 @@ const QuestionsAnswers = [
 ];
 
 const FAQ = () => {
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    // Setup scrollerProxy for Lenis smooth scroll
+    if (!window.ScrollTriggerProxySet) {
+      ScrollTrigger.scrollerProxy(window, {
+        scrollTop(value) {
+          if (value !== undefined) {
+            window.scrollTo(0, value);
+          }
+          return window.scrollY;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+      });
+      window.ScrollTriggerProxySet = true;
+    }
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
   return (
     <div className="my-24 mx-5 xl:mx-0 max-w-[1440px]">
       <div className="flex flex-col items-start">
-        <h2 className="text-2xl md:text-5xl font-bold text-start mb-8 sm:mb-16 ">
+        <h2 ref={headingRef} className="text-2xl md:text-5xl font-bold text-start mb-8 sm:mb-16 ">
           Frequently Asked Questions
         </h2>
-
         <Qna items={QuestionsAnswers} />
       </div>
     </div>
@@ -55,3 +101,9 @@ const FAQ = () => {
 };
 
 export default FAQ;
+
+declare global {
+  interface Window {
+    ScrollTriggerProxySet?: boolean;
+  }
+}

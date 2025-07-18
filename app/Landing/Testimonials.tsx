@@ -72,6 +72,51 @@ const Testimonials = () => {
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
   const autoAdvanceRef = useRef<NodeJS.Timeout | null>(null);
 
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    // Setup scrollerProxy for Lenis smooth scroll
+    if (!window.ScrollTriggerProxySet) {
+      ScrollTrigger.scrollerProxy(window, {
+        scrollTop(value) {
+          if (value !== undefined) {
+            window.scrollTo(0, value);
+          }
+          return window.scrollY;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+      });
+      window.ScrollTriggerProxySet = true;
+    }
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+
   useEffect(() => {
     setMounted(true);
     setSettings(getResponsiveSettings());
@@ -178,10 +223,7 @@ const Testimonials = () => {
           <div className="flex flex-col items-center">
             <div className="text-center">
             <div className="flex flex-col items-center">
-   <h2
-        
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8"
-      >
+   <h2 ref={headingRef} className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8">
         What Our Clients Say
       </h2>
 
@@ -299,3 +341,9 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+declare global {
+  interface Window {
+    ScrollTriggerProxySet?: boolean;
+  }
+}

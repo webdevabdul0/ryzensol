@@ -22,12 +22,14 @@ const Page: React.FC = () => {
           <Hero />
          
          <div id="Partners">
-<Partners />
+          <Partners />
 
          </div>
          
+          <div id="Services">
+            <ExclusiveServices />
+          </div>
           
-          <ExclusiveServices />
         
           <div id="Portfolio" >
             <Portfolio />
@@ -43,7 +45,7 @@ const Page: React.FC = () => {
          
 
           
-          <div id="Services" className="w-full flex flex-col items-center">
+          <div  className="w-full flex flex-col items-center">
             <Services />
           </div>
           <div id="Faq" className="text-black w-full flex flex-col items-center">

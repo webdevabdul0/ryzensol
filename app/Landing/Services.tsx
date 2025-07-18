@@ -32,7 +32,7 @@ const Services = () => {
             scrollTrigger: {
               trigger: section,
               start: "top 90%",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -48,7 +48,7 @@ const Services = () => {
             scrollTrigger: {
               trigger: section,
               start: "top 90%",
-              toggleActions: "play none none none",
+              toggleActions: "play none none reverse",
             },
             delay: 0.1,
             onStart: () => {

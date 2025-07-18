@@ -3,9 +3,8 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Vortex } from "../components/ui/vortex";
-import Carousal from "../components/Carousal";
+
+
 import { AvatarGroup } from "../components/ui/avatar-group";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -27,12 +26,31 @@ const Hero = () => {
   const headerContent = useRef<HTMLHeadingElement>(null);
   const colorWipeRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
 
- 
-
-  
-
- 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (videoRef.current && heroSectionRef.current) {
+      gsap.fromTo(
+        videoRef.current,
+        { opacity: 1, y: 0 },
+        {
+          opacity: 0,
+          y: 250,
+          ease: "power3.inOut",
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "bottom bottom",
+            end: "bottom-=50 top",
+            scrub: true,
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
 
   return (
     <section
@@ -40,10 +58,10 @@ const Hero = () => {
       ref={heroSectionRef}
       className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 rounded-b-3xl overflow-hidden"
     >
-     
-     
-      {/* Background Video */}
-      <HeroVideoBg />
+      {/* Background Video (clipped to section) */}
+      <div ref={videoRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <HeroVideoBg className="w-full h-full" />
+      </div>
       {/* Black Overlay */}
       <div className="absolute inset-0 bg-black/70 z-10 pointer-events-none backdrop-blur-sm" />
       {/* Content */}

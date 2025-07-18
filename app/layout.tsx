@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Script from "next/script";
-
-// TODO: Move this to a .env.local file (e.g., NEXT_PUBLIC_GTAG_ID=G-B2DEL0NCC1)
-const GTAG_ID = "G-B2DEL0NCC1"; // Your Google Tag ID
-
 import "./globals.css";
+import LenisProvider from "./LenisProvider";
+
+const GTAG_ID = "G-B2DEL0NCC1"; // TODO: Move to .env.local
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -29,7 +28,9 @@ export default function RootLayout({
     >
       <head></head>
       <body className={`${manrope.variable} antialiased`}>
-        {children}
+        <LenisProvider>
+          {children}
+        </LenisProvider>
         {/* Google Tag Script - Placed at the end of body for better performance */}
         <Script
           strategy="afterInteractive"

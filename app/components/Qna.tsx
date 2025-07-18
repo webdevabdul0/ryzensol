@@ -1,7 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Qna = ({
   items,
@@ -12,9 +14,35 @@ const Qna = ({
     answer: string;
   }[];
 }) => {
-  const [openAnswers, setOpenAnswers] = useState<{ [key: number]: boolean }>(
-    {}
-  );
+  const [openAnswers, setOpenAnswers] = useState<{ [key: number]: boolean }>({});
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const elements = itemRefs.current.filter(Boolean);
+    const container = elements.length > 0 && elements[0]?.parentElement ? elements[0].parentElement : null;
+    if (elements.length > 0 && container) {
+      gsap.fromTo(
+        elements,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, [items.length]);
 
   const toggleAnswer = (id: number) => {
     setOpenAnswers((prev) => ({
@@ -25,14 +53,15 @@ const Qna = ({
 
   return (
     <>
-      {items.map(({ id, question, answer }) => (
+      {items.map(({ id, question, answer }, idx) => (
         <div
           key={id}
+          ref={el => { itemRefs.current[idx] = el; }}
           className="w-full border-b-2 border-b-black/20 flex flex-col py-5 mb-5"
         >
           <div
             className="w-full flex flex-row justify-between cursor-pointer"
-            onClick={() => toggleAnswer(id)}
+            onClick={() => setOpenAnswers((prev) => ({ ...prev, [id]: !prev[id] }))}
           >
             <h3 className="text-base md:text-2xl font-semibold text-start mb-3 sm:mb-5 text-black select-none">
               {question}

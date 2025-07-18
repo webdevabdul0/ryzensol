@@ -112,7 +112,7 @@ const ExclusiveServices = () => {
           scrollTrigger: {
             trigger: headerTitleRef.current,
             start: "top 85%",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reverse",
           },
         }
       );
@@ -127,31 +127,33 @@ const ExclusiveServices = () => {
           scrollTrigger: {
             trigger: headerDescRef.current,
             start: "top 85%",
-            toggleActions: "play none none none",
+            toggleActions: "play none none reverse",
           },
         }
       );
     }
-    serviceRefs.current.forEach((el, idx) => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-            delay: idx * 0.15, // stagger effect
-          }
-        );
-      }
-    });
+    // Animate li elements with stagger and reversal
+    const lis = serviceRefs.current.filter((el): el is HTMLLIElement => !!el);
+    const ul = lis.length > 0 ? lis[0].parentElement : null;
+    if (lis.length > 0 && ul) {
+      gsap.fromTo(
+        lis,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,        // slightly longer per li
+          stagger: 0.3,         // less gap between each li animating
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ul,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+    
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
@@ -199,16 +201,16 @@ const ExclusiveServices = () => {
                 const img = imgRef.current;
                 const onEnter = () => {
                   gsap.to(img, {
-                    rotate: 5,
-                    x: 24,
-                    y: -16,
+                    
+                    x: 10,
+                    y: -10,
                     duration: 0.5,
                     ease: "power3.out",
                   });
                 };
                 const onLeave = () => {
                   gsap.to(img, {
-                    rotate: 0,
+                    
                     x: 0,
                     y: 0,
                     duration: 0.5,
@@ -225,7 +227,7 @@ const ExclusiveServices = () => {
               return (
                 <li
                   key={service.title}
-                  className="py-6 md:py-10"
+                  className="pt-3 md:pt-6"
                   ref={el => { serviceRefs.current[idx] = el; }}
                 >
                   <button
@@ -236,7 +238,7 @@ const ExclusiveServices = () => {
                     <span className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-400 mr-6 md:mr-10 flex-shrink-0 transition group-hover:text-primary/80" style={{ WebkitTextStroke: "1px #222", color: "transparent" }}>
                       {String(idx + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-2xl md:text-3xl lg:text-5xl font-bold text-black group-hover:text-primary transition">
+                    <span className="text-2xl md:text-3xl lg:text-4xl font-semibold text-black group-hover:text-primary transition">
                       {service.title}
                     </span>
                     <span className="ml-auto text-gray-700 text-sm sm:text-lg md:text-xl font-medium  ">
@@ -254,7 +256,7 @@ const ExclusiveServices = () => {
                   >
                     <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start mt-6 md:mt-8">
                       <div className="flex-1">
-                        <p className="text-gray-800 text-base md:text-lg mb-3 font-medium">
+                        <p className="text-gray-800 text-base md:text-lg font-medium">
                           {SERVICE_PARAGRAPHS[idx]}
                         </p>
                         <ul className="space-y-2">

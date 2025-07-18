@@ -7,10 +7,12 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const Partners = () => {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
-  const logoRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+  
     // Heading animation
     if (headingRef.current) {
       gsap.fromTo(
@@ -29,38 +31,40 @@ const Partners = () => {
         }
       );
     }
-    // Partner logos fade in/out
-    logoRefs.current.forEach((logo, idx) => {
-      if (logo) {
-        gsap.fromTo(
-          logo,
-          { opacity: 0, x: -40 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: logo,
-              start: "left 90%",
-              end: "right 10%",
-              scrub: true,
-              onLeave: () => gsap.to(logo, { opacity: 0, x: 40, duration: 0.5 }),
-              onEnterBack: () => gsap.to(logo, { opacity: 1, x: 0, duration: 0.5 }),
-              onLeaveBack: () => gsap.to(logo, { opacity: 0, x: -40, duration: 0.5 }),
-            },
-          }
-        );
-      }
-    });
+  
+    // Parallax scroll-up animation for section content
+    if (sectionRef.current && contentRef.current) {
+      gsap.fromTo(
+        contentRef.current,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%", // triggers when 10% of section is visible
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+  
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
-
+  
   return (
-    <div className="relative mt-12 md:mt-36  mx-5">
-      <div className="flex flex-col items-center ">
+    <div  ref={sectionRef} className="relative mt-12 md:mt-36  mx-5">
+      
+      <div ref={contentRef}>
+
+           <div className="flex flex-col items-center ">
         <h2
           ref={headingRef}
           className="text-2xl md:text-5xl  font-semibold text-center mb-2 sm:mb-5 text-black max-w-5xl"
@@ -72,7 +76,7 @@ const Partners = () => {
       </div>
 
     {/* Marquee of partner logos using react-fast-marquee */}
-    <div className="w-full mt-8 relative">
+    <div  className="w-full mt-8 relative">
       {/* Left and right gradient overlays for fade effect */}
       <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10" style={{background: 'linear-gradient(to right, #f9fafb 80%, transparent)'}} />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10" style={{background: 'linear-gradient(to left, #f9fafb 80%, transparent)'}} />
@@ -107,10 +111,10 @@ const Partners = () => {
               {partners.map((partner, idx) => (
                 <img
                   key={idx + batchIdx * partners.length}
-                  ref={el => { logoRefs.current[idx + batchIdx * partners.length] = el; }}
+                 
                   src={partner.src}
                   alt={`Partner ${idx + 1}`}
-                  className={`${partner.height} w-auto grayscale hover:grayscale-0 transition duration-300 `}
+                  className={`${partner.height} w-auto  `}
                 />
               ))}
             </div>
@@ -118,6 +122,10 @@ const Partners = () => {
         })()}
       </Marquee>
     </div>
+
+      </div>
+      
+   
 
       
       

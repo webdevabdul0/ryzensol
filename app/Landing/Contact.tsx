@@ -2,6 +2,9 @@
 
 import React from "react";
 import HeroVideoBg from "../components/HeroVideoBg";
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const SERVICE_OPTIONS = [
   "UI/UX Design",
@@ -15,6 +18,9 @@ const SERVICE_OPTIONS = [
 ];
 
 const Contact = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+
   const [form, setForm] = React.useState({
     name: "",
     email: "",
@@ -56,8 +62,10 @@ const Contact = () => {
 
   return (
     <>
-      <section className="relative z-20 w-full flex flex-col justify-center items-center py-20 lg:py-[120px] text-white">
-        <HeroVideoBg videoSrc="/Hero/video/4.mp4" />
+      <section ref={sectionRef} className="relative z-20 w-full flex flex-col justify-center items-center py-20 lg:py-[120px] text-white overflow-hidden">
+        <div ref={videoRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
+          <HeroVideoBg videoSrc="/Hero/video/4.mp4" className="w-full h-full" />
+        </div>
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black/70 z-10 pointer-events-none backdrop-blur-md" />
         <div className="-mx-4 flex flex-wrap lg:justify-between max-w-[1440px] z-30 px-8 2xl:px-0">
@@ -948,9 +956,12 @@ const ContactEmailBox = ({ email }: { email: string }) => (
 );
 
 const ContactTextArea = ({ row, placeholder, name, value, onChange }: { row: number, placeholder: string, name: string, value: string, onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void }) => {
+  let label = name === "details" ? "Message" : name;
   return (
     <div className="mb-6">
+      <label htmlFor={name} className="block mb-2 text-base font-medium text-white">{label}</label>
       <textarea
+        id={name}
         rows={row}
         placeholder={placeholder}
         name={name}
@@ -964,9 +975,12 @@ const ContactTextArea = ({ row, placeholder, name, value, onChange }: { row: num
 };
 
 const ContactInputBox = ({ type, placeholder, name, value, onChange }: { type: string, placeholder: string, name: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => {
+  let label = name === "name" ? "Name" : name === "email" ? "Email" : name;
   return (
     <div className="mb-6">
+      <label htmlFor={name} className="block mb-2 text-base font-medium text-white">{label}</label>
       <input
+        id={name}
         type={type}
         placeholder={placeholder}
         name={name}
@@ -981,7 +995,9 @@ const ContactInputBox = ({ type, placeholder, name, value, onChange }: { type: s
 
 const ContactSelectBox = ({ name, value, onChange, options }: { name: string, value: string, onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void, options: string[] }) => (
   <div className="mb-6 relative">
+    <label htmlFor={name} className="block mb-2 text-base font-medium text-white">Service</label>
     <select
+      id={name}
       name={name}
       value={value}
       onChange={onChange}
