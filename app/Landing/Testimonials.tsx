@@ -214,7 +214,7 @@ const Testimonials = () => {
 
 
   return (
-    <section className="relative py-24 ">
+    <section className="relative py-4 sm:py-24 ">
       {/* Gradient blobs */}
       
       {/* Testimonial content */}

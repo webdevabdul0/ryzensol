@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import LenisProvider from "./LenisProvider";
+import AppWithLoader from "./components/AppWithLoader";
 
 const GTAG_ID = "G-B2DEL0NCC1"; // TODO: Move to .env.local
 
@@ -29,7 +30,7 @@ export default function RootLayout({
       <head></head>
       <body className={`${manrope.variable} antialiased`}>
         <LenisProvider>
-          {children}
+          <AppWithLoader>{children}</AppWithLoader>
         </LenisProvider>
         {/* Google Tag Script - Placed at the end of body for better performance */}
         <Script

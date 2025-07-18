@@ -95,8 +95,8 @@ const Services = () => {
             Designing Intuitive & Engaging User Experiences
           </h2>
           <p className="text-lg md:text-xl text-center md:text-start  font-light text-black/80 mb-3 sm:mb-5">
-            I craft visually stunning and user-centric interfaces that balance
-            aesthetics with functionality. My approach focuses on clean UX,
+            We craft visually stunning and user-centric interfaces that balance
+            aesthetics with functionality. Our approach focuses on clean UX,
             accessibility, and seamless interactions to enhance engagement and
             usability.
           </p>
@@ -136,7 +136,7 @@ const Services = () => {
             <button className="p-[3px] relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl" />
               <div className="px-8 py-3  bg-white rounded-2xl  relative group hover:bg-primary/20 hover:text-white transition duration-300 text-black ">
-                Contact Me
+                Contact Us
               </div>
             </button>
           </a>
@@ -170,9 +170,9 @@ const Services = () => {
             Building Scalable & High-Performance Web Apps
           </h2>
           <p className="text-lg md:text-xl text-center md:text-start  font-light text-black/80 mb-3 sm:mb-5">
-            I specialize in modern web development, creating fast, scalable, and
+            We specialize in modern web development, creating fast, scalable, and
             AI-powered applications using the latest web technologies. From
-            intuitive frontends to robust backends, I build products that
+            intuitive frontends to robust backends, we build products that
             deliver seamless digital experiences.
           </p>
 
@@ -213,7 +213,7 @@ const Services = () => {
             <button className="p-[3px] relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl" />
               <div className="px-8 py-3  bg-white rounded-2xl  relative group hover:bg-primary/20 hover:text-white transition duration-300 text-black ">
-                Contact Me
+                Contact Us
               </div>
             </button>
           </a>
@@ -225,17 +225,17 @@ const Services = () => {
         ref={el => { sectionRefs.current[2] = el; }}
       >
         <div
-          className="basis-1/2 flex flex-col items-center md:items-start "
+          className="basis-1/2 flex flex-col items-center md:items-start -mt-20 md:mt-0"
           ref={el => { contentRefs.current[2] = el; }}
         >
-          <h5 className="mb-3 sm:mb-5 text-[#6366F1] text-base sm:text-lg font-semibold">
+          <h5 className="mb-3 sm:mb-5 text-[#6366F1] text-base sm:text-lg font-semibold ">
             AI & Automation
           </h5>
           <h2 className="text-3xl  md:text-5xl font-bold text-center md:text-start mb-3 sm:mb-5">
             Building Intelligent Systems & Workflows
           </h2>
           <p className="text-lg md:text-xl text-center md:text-start  font-light text-black/80 mb-3 sm:mb-5">
-            I specialize in creating smart, automated solutions that leverage cutting-edge AI. From intelligent chatbots to complex workflow automation, I build systems that think, learn, and perform.
+            We specialize in creating smart, automated solutions that leverage cutting-edge AI. From intelligent chatbots to complex workflow automation, we build systems that think, learn, and perform.
           </p>
 
           <ul className="mb-3 sm:mb-5">
@@ -272,7 +272,7 @@ const Services = () => {
             <button className="p-[3px] relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-2xl" />
               <div className="px-8 py-3  bg-white rounded-2xl  relative group hover:bg-primary/20 hover:text-white transition duration-300 text-black ">
-                Contact Me
+                Contact Us
               </div>
             </button>
           </a>

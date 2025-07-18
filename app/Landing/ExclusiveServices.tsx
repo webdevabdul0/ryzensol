@@ -160,7 +160,7 @@ const ExclusiveServices = () => {
   }, []);
 
   return (
-    <section className="w-full py-24 px-4 sm:px-6 md:px-10 xl:px-20 mt-16 relative">
+    <section className="w-full py-4  sm:py-24 px-4 sm:px-6 md:px-10 xl:px-20 mt-16 relative">
 
 
 

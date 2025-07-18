@@ -1,6 +1,5 @@
 "use client"
 import React, { useRef, useEffect } from "react";
-import { HoverEffect } from "../components/ui/card-hover-effect";
 import Marquee from "react-fast-marquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -78,8 +77,8 @@ const Partners = () => {
     {/* Marquee of partner logos using react-fast-marquee */}
     <div  className="w-full mt-8 relative">
       {/* Left and right gradient overlays for fade effect */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-16 z-10" style={{background: 'linear-gradient(to right, #f9fafb 80%, transparent)'}} />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-16 z-10" style={{background: 'linear-gradient(to left, #f9fafb 80%, transparent)'}} />
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-5 sm:w-16 z-10" style={{background: 'linear-gradient(to right, #f9fafb 80%, transparent)'}} />
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-5  sm:w-16 z-10" style={{background: 'linear-gradient(to left, #f9fafb 80%, transparent)'}} />
       {/* 
         If you have not installed react-fast-marquee, run:
         npm install react-fast-marquee
