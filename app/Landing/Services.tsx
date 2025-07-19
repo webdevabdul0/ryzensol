@@ -9,6 +9,10 @@ import Image3 from "../../public/Services/3.png"; // Using an existing image as 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 const Services = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -16,6 +20,7 @@ const Services = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const mobile = isMobile();
     sectionRefs.current.forEach((section, idx) => {
       const image = imageRefs.current[idx];
       const content = contentRefs.current[idx];
@@ -23,11 +28,11 @@ const Services = () => {
         // Parallax effect for image
         gsap.fromTo(
           image,
-          { opacity: 0, y: 80 },
+          { opacity: 0, y: mobile ? 20 : 80 }, // Less movement on mobile
           {
             opacity: 1,
             y: 0,
-            duration: 1.2,
+            duration: mobile ? 0.5 : 1.2, // Faster on mobile
             ease: "power3.out",
             scrollTrigger: {
               trigger: section,
@@ -39,11 +44,11 @@ const Services = () => {
         // Parallax effect for content (slower)
         gsap.fromTo(
           content,
-          { opacity: 0, y: 120 },
+          { opacity: 0, y: mobile ? 30 : 120 }, // Less movement on mobile
           {
             opacity: 1,
             y: 0,
-            duration: 1.5,
+            duration: mobile ? 0.7 : 1.5, // Faster on mobile
             ease: "power3.out",
             scrollTrigger: {
               trigger: section,
@@ -58,12 +63,12 @@ const Services = () => {
               );
               gsap.fromTo(
                 textEls,
-                { opacity: 0, y: 40 },
+                { opacity: 0, y: mobile ? 10 : 40 }, // Less movement on mobile
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.7,
-                  stagger: 0.12,
+                  duration: mobile ? 0.3 : 0.7, // Faster on mobile
+                  stagger: mobile ? 0.05 : 0.12, // Less stagger on mobile
                   ease: "power3.out",
                 }
               );

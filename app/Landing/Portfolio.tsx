@@ -5,6 +5,10 @@ import { HoverEffect } from "../components/ui/card-hover-effect";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 const Portfolio = () => {
   // Only show all items, no filters
   const projects = items.map((item) => ({
@@ -20,15 +24,16 @@ const Portfolio = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const mobile = isMobile();
     // Animate heading
     if (headingRef.current) {
       gsap.fromTo(
         headingRef.current,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: mobile ? 20 : 60 }, // Less movement on mobile
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: mobile ? 0.5 : 1, // Faster on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: headingRef.current,
@@ -43,15 +48,15 @@ const Portfolio = () => {
     if (cards.length > 0) {
       gsap.fromTo(
         cards,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: mobile ? 20 : 60 }, // Less movement on mobile
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          stagger: 0.2,
+          duration: mobile ? 0.5 : 1.2, // Faster on mobile
+          stagger: mobile ? 0.08 : 0.2, // Less stagger on mobile
           ease: "power3.out",
           scrollTrigger: {
-            trigger: cards[0].parentElement,
+            trigger: cards[0]?.parentElement,
             start: "top 80%",
             toggleActions: "play none none reverse",
           },

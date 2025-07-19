@@ -10,6 +10,10 @@ import { AvatarGroup } from "../components/ui/avatar-group";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 gsap.registerPlugin(ScrollTrigger);
 
 const HeroVideoBg = dynamic(() => import("../components/HeroVideoBg"), { ssr: false });
@@ -29,14 +33,16 @@ const Hero = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const mobile = isMobile();
     if (videoRef.current && heroSectionRef.current) {
       gsap.fromTo(
         videoRef.current,
         { opacity: 1, y: 0 },
         {
-          opacity: 0,
-          y: 250,
+          opacity: mobile ? 1 : 0, // Less fade on mobile
+          y: mobile ? 80 : 250,     // Less movement on mobile
           ease: "power3.inOut",
+          duration: mobile ? 0.6 : 1.2, // Faster on mobile
           scrollTrigger: {
             trigger: heroSectionRef.current,
             start: "bottom bottom",

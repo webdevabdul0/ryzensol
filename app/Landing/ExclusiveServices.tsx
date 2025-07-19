@@ -4,6 +4,10 @@ import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 const SERVICES = [
   {
     title: "UI/UX Design",
@@ -98,15 +102,16 @@ const ExclusiveServices = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const mobile = isMobile();
     // Header animation
     if (headerTitleRef.current && headerDescRef.current) {
       gsap.fromTo(
         headerTitleRef.current,
-        { opacity: 0, x: -80 },
+        { opacity: 0, x: mobile ? -30 : -80 }, // Less movement on mobile
         {
           opacity: 1,
           x: 0,
-          duration: 1,
+          duration: mobile ? 0.5 : 1, // Faster on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: headerTitleRef.current,
@@ -117,11 +122,11 @@ const ExclusiveServices = () => {
       );
       gsap.fromTo(
         headerDescRef.current,
-        { opacity: 0, x: 80 },
+        { opacity: 0, x: mobile ? 30 : 80 }, // Less movement on mobile
         {
           opacity: 1,
           x: 0,
-          duration: 1,
+          duration: mobile ? 0.5 : 1, // Faster on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: headerDescRef.current,
@@ -134,15 +139,15 @@ const ExclusiveServices = () => {
     // Animate li elements with stagger and reversal
     const lis = serviceRefs.current.filter((el): el is HTMLLIElement => !!el);
     const ul = lis.length > 0 ? lis[0].parentElement : null;
-    if (lis.length > 0 && ul) {
+    if (lis.length) {
       gsap.fromTo(
         lis,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: mobile ? 20 : 60 }, // Less movement on mobile
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,        // slightly longer per li
-          stagger: 0.3,         // less gap between each li animating
+          duration: mobile ? 0.5 : 1.2, // Faster on mobile
+          stagger: mobile ? 0.08 : 0.3, // Less stagger on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: ul,
@@ -152,7 +157,6 @@ const ExclusiveServices = () => {
         }
       );
     }
-    
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };

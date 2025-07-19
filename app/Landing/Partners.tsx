@@ -4,6 +4,10 @@ import Marquee from "react-fast-marquee";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 const Partners = () => {
   const headingRef = useRef<HTMLHeadingElement | null>(null);
   const sectionRef = useRef(null);
@@ -11,16 +15,16 @@ const Partners = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-  
+    const mobile = isMobile();
     // Heading animation
     if (headingRef.current) {
       gsap.fromTo(
         headingRef.current,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: mobile ? 20 : 60 }, // Less movement on mobile
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: mobile ? 0.5 : 1, // Faster on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: headingRef.current,
@@ -30,19 +34,18 @@ const Partners = () => {
         }
       );
     }
-  
     // Parallax scroll-up animation for section content
     if (sectionRef.current && contentRef.current) {
       gsap.fromTo(
         contentRef.current,
         {
           opacity: 0,
-          y: 100,
+          y: mobile ? 30 : 100, // Less movement on mobile
         },
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: mobile ? 0.7 : 1.2, // Faster on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -52,7 +55,6 @@ const Partners = () => {
         }
       );
     }
-  
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };

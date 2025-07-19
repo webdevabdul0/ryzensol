@@ -5,6 +5,10 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+// Utility to detect mobile
+const isMobile = () =>
+  typeof window !== "undefined" && window.innerWidth < 640;
+
 const Qna = ({
   items,
 }: {
@@ -19,17 +23,18 @@ const Qna = ({
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const mobile = isMobile();
     const elements = itemRefs.current.filter(Boolean);
     const container = elements.length > 0 && elements[0]?.parentElement ? elements[0].parentElement : null;
     if (elements.length > 0 && container) {
       gsap.fromTo(
         elements,
-        { opacity: 0, y: 60 },
+        { opacity: 0, y: mobile ? 20 : 60 }, // Less movement on mobile
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          stagger: 0.2,
+          duration: mobile ? 0.5 : 1.2, // Faster on mobile
+          stagger: mobile ? 0.08 : 0.2, // Less stagger on mobile
           ease: "power3.out",
           scrollTrigger: {
             trigger: container,
