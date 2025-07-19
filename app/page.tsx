@@ -3,11 +3,14 @@ import Header from "./Layout/Header";
 import Hero from "./Landing/Hero";
 import Services from "./Landing/Services";
 import Footer from "./Layout/Footer";
-import Testimonials from "./Landing/Testimonials";
-import Contact from "./Landing/Contact";
-import Portfolio from "./Landing/Portfolio";
-import Partners from "./Landing/Partners";
-import ExclusiveServices from "./Landing/ExclusiveServices";
+import dynamic from "next/dynamic";
+
+const Testimonials = dynamic(() => import("./Landing/Testimonials"), { ssr: false });
+const Contact = dynamic(() => import("./Landing/Contact"), { ssr: false });
+const Portfolio = dynamic(() => import("./Landing/Portfolio"), { ssr: false });
+const Partners = dynamic(() => import("./Landing/Partners"), { ssr: false });
+const ExclusiveServices = dynamic(() => import("./Landing/ExclusiveServices"), { ssr: false });
+
 const Page: React.FC = () => {
   return (
     <div className="w-full overflow-hidden bg-gray-50">
@@ -20,7 +23,6 @@ const Page: React.FC = () => {
          
          <div id="Partners">
           <Partners />
-
          </div>
          
           <div id="Services">
@@ -32,21 +34,15 @@ const Page: React.FC = () => {
             <Portfolio />
           </div>
 
-          
-
           <div id="Testimonials">
             <Testimonials />
           </div>
 
-
-         
-
-          
           <div  className="w-full flex flex-col items-center">
             <Services />
           </div>
          
-          <div id="Contact" className="w-full flex flex-row items-center  bg-background ">
+          <div id="Contact" className="w-full flex flex-row items-center mt-20 ">
             <Contact />
           </div>
         </main>

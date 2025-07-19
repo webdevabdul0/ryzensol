@@ -20,6 +20,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     // Animate heading
     if (headingRef.current) {
       gsap.fromTo(
@@ -28,7 +29,7 @@ const Portfolio = () => {
         {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: isMobile ? 0.6 : 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: headingRef.current,
@@ -47,13 +48,13 @@ const Portfolio = () => {
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          stagger: 0.2,
+          duration: isMobile ? 0.7 : 1.2,
+          stagger: isMobile ? 0.08 : 0.2,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: cards[0].parentElement,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            trigger: headingRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -61,7 +62,7 @@ const Portfolio = () => {
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
-  }, []);
+  }, [projects.length]);
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-24 relative">

@@ -19,6 +19,7 @@ const Qna = ({
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const elements = itemRefs.current.filter(Boolean);
     const container = elements.length > 0 && elements[0]?.parentElement ? elements[0].parentElement : null;
     if (elements.length > 0 && container) {
@@ -28,8 +29,8 @@ const Qna = ({
         {
           opacity: 1,
           y: 0,
-          duration: 1.2,
-          stagger: 0.2,
+          duration: isMobile ? 0.7 : 1.2,
+          stagger: isMobile ? 0.08 : 0.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: container,
