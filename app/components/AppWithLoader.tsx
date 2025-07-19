@@ -75,16 +75,9 @@ export default function AppWithLoader({ children }: { children: React.ReactNode 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load critical assets first with a shorter timeout
-    preloadAssets(CRITICAL_ASSETS, 3000).then(() => {
-      // Add a minimum loading time for better UX
-      setTimeout(() => setLoading(false), 500);
-    });
-
-    // Load secondary assets in the background after initial render
-    setTimeout(() => {
-      preloadAssets(SECONDARY_ASSETS, 10000);
-    }, 1000);
+    // TEMP FIX: Always hide loader after 800ms, bypassing asset preloading
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -94,7 +87,7 @@ export default function AppWithLoader({ children }: { children: React.ReactNode 
           <motion.div
             key="loader"
             initial={{ y: 0, opacity: 1 }}
-            exit={{ y: -1000, opacity: 1 }}
+            exit={{ y:0, opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-background"
           >

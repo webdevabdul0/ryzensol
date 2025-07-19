@@ -16,7 +16,7 @@ const HeroVideoBg: React.FC<HeroVideoBgProps> = ({ videoSrc = "/Hero/video/2.mp4
       loop
       muted
       playsInline
-      preload="auto"
+       preload="metadata"
       poster={posterSrc}
       aria-hidden="true"
     />

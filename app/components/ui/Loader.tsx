@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { LoaderThree , LoaderFour } from "@/components/ui/loader";
+import { LoaderFour } from "@/components/ui/loader";
 
 export function Loader() {
   return (
@@ -10,7 +10,7 @@ export function Loader() {
     
       {/* Center Logo/Text */}
 
-<LoaderThree/>
+
       <LoaderFour />
 
 

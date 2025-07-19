@@ -29,6 +29,7 @@ export default function RootLayout({
     >
       <head></head>
       <body className={`${manrope.variable} antialiased`}>
+        {/* Main App Content */}
         <LenisProvider>
           <AppWithLoader>{children}</AppWithLoader>
         </LenisProvider>
