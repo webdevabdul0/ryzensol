@@ -1,10 +1,8 @@
 import React from "react";
 import Header from "./Layout/Header";
-import Hero from "./Landing/Hero";
 import Services from "./Landing/Services";
 import Footer from "./Layout/Footer";
 import Testimonials from "./Landing/Testimonials";
-import Contact from "./Landing/Contact";
 import Portfolio from "./Landing/Portfolio";
 import Partners from "./Landing/Partners";
 import ExclusiveServices from "./Landing/ExclusiveServices";
@@ -16,7 +14,7 @@ const Page: React.FC = () => {
           <Header />
         </header>
         <main id="main-content" className="w-full">
-          <Hero />
+         
          
          <div id="Partners">
           <Partners />
@@ -46,9 +44,7 @@ const Page: React.FC = () => {
             <Services />
           </div>
          
-          <div id="Contact" className="w-full flex flex-row items-center  bg-background ">
-            <Contact />
-          </div>
+       
         </main>
       </div>
       <footer className="w-full relative">
