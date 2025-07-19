@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`${manrope.variable} antialiased`}>
         {/* Main App Content */}
         <LenisProvider>
-          <AppWithLoader>{children}</AppWithLoader>
+      {children}
         </LenisProvider>
         {/* Google Tag Script - Placed at the end of body for better performance */}
         <Script
