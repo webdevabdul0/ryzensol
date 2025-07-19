@@ -53,16 +53,7 @@ export const items: Product[] = [
     technologies: ["Next.js", "Tailwind CSS", "Figma"],
     githubUrl: "https://github.com/webdevabdul0/qoodo-Landing",
   },
-  {
-    id: 4,
-    name: "Portfolio Website",
-    desc: "The very website you are looking at, built with Next.js and Framer Motion.",
-    image: "/Portfolio/project (6).jpg",
-    href: "#",
-    category: "development",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
-    githubUrl: "https://github.com/webdevabdul0/abdulLP",
-  },
+  
 
   {
     id: 6,
@@ -83,26 +74,8 @@ export const items: Product[] = [
     technologies: ["React", "TypeScript", "Vite", "Shadcn UI", "Tailwind CSS", "Supabase"],
     githubUrl: "https://github.com/webdevabdul0/brightmind-learning-nexus",
   },
-  {
-    id: 8,
-    name: "Chroma Bubble - AI Chat",
-    desc: "A conversational AI app using the OpenAI GPT-4o model. Features RAG-based chat with PDF uploads, powered by an n8n workflow and Pinecone for vector storage.",
-    image: "/Portfolio/project (7).jpg", // TODO: Replace with a dedicated project image
-    href: "https://chat-bubble-app.netlify.app/",
-    category: "development",
-    technologies: ["OpenAI API", "RAG", "Pinecone", "n8n", "TypeScript", "React"],
-    githubUrl: "https://github.com/webdevabdul0/chroma-bubble-app",
-  },
-  {
-    id: 9,
-    name: "Sattva Business Website",
-    desc: "A modern, professional frontend for Sattva, a company specializing in HACCP, risk assessment, and workplace safety compliance services.",
-    image: "/Portfolio/project (8).jpg", // TODO: Replace with a dedicated project image
-    href: "https://satvaa.netlify.app/",
-    category: "development",
-    technologies: ["Next.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/webdevabdul0/sattvaLP",
-  },
+  
+  
   {
     id: 10,
     name: "GoGreek Social Platform",
