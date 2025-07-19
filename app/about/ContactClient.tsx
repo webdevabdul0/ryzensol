@@ -146,7 +146,7 @@ const ContactClient = () => {
               results-driven solutions.
             </p>
             <div className="mb-8 flex flex-col gap-4 w-full max-w-lg">
-              <ContactEmailBox email="Global.business@ryzensol.com" />
+              <ContactEmailBox email="global.business@ryzensol.com" />
               <ContactEmailBox email="support@ryzensol.com" />
               <ContactEmailBox email="contact@ryzensol.com" />
             </div>
