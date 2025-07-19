@@ -1,7 +1,6 @@
 "use client"
 import React, { useState, useRef, useEffect } from "react";
 
-import GradientBlob from "../components/GradientBlob";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 

@@ -2,7 +2,6 @@
 import React, { useRef, useEffect } from "react";
 import { items } from "../constants";
 import { HoverEffect } from "../components/ui/card-hover-effect";
-import GradientBlob from "../components/GradientBlob";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 

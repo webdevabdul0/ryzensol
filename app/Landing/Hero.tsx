@@ -1,18 +1,12 @@
-"use client";
+
 import React from "react";
 import dynamic from "next/dynamic";
-import { useRef } from "react";
-import gsap from "gsap";
 import Link from "next/link";
-
-
 import { AvatarGroup } from "../components/ui/avatar-group";
-import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 
-const HeroVideoBg = dynamic(() => import("../components/HeroVideoBg"), { ssr: false });
+
+const HeroVideoBg = dynamic(() => import("../components/HeroVideoBg"));
 
 const AVATARS = [
   { src: "/Contact/1.png", alt: "Client 1", fallback: "A" },
@@ -20,45 +14,16 @@ const AVATARS = [
 ];
 
 const Hero = () => {
-  const buttonContainer = useRef<HTMLDivElement>(null);
-  const headerText = useRef<HTMLHeadingElement>(null);
-  const headerContent = useRef<HTMLHeadingElement>(null);
-  const colorWipeRef = useRef<HTMLDivElement>(null);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    if (videoRef.current && heroSectionRef.current) {
-      gsap.fromTo(
-        videoRef.current,
-        { opacity: 1, y: 0 },
-        {
-          opacity: 0,
-          y: 250,
-          ease: "power3.inOut",
-          scrollTrigger: {
-            trigger: heroSectionRef.current,
-            start: "bottom bottom",
-            end: "bottom-=50 top",
-            scrub: true,
-          },
-        }
-      );
-    }
-    return () => {
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
 
   return (
     <section
       id="hero-section"
-      ref={heroSectionRef}
+     
       className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 rounded-b-3xl overflow-hidden"
     >
       {/* Background Video (clipped to section) */}
-      <div ref={videoRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <HeroVideoBg className="w-full h-full" />
       </div>
       {/* Black Overlay */}
@@ -67,8 +32,8 @@ const Hero = () => {
       <div className="flex flex-col flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 xl:px-20 pt-12 pb-20 sm:pb-24 md:pb-36 relative z-20">
         {/* Top: Tagline + Heading */}
         <div className="flex-1 flex flex-col items-start justify-start mt-8 sm:mt-12 md:mt-16">
-          <div ref={headerContent} className="w-full">
-            <div ref={headerText} className="flex flex-col items-start">
+          <div  className="w-full">
+            <div  className="flex flex-col items-start">
               <h3 className="text-sm md:text-lg uppercase text-textMuted tracking-widest text-left mb-2 sm:mb-3 animate-fade-in-down">
                 Full-Service Digital Agency
               </h3>
@@ -101,7 +66,7 @@ const Hero = () => {
           </p>
           <div
             className="flex flex-row justify-end mt-2 sm:mt-3 md:mt-4 gap-2 sm:gap-4 w-full sm:w-auto"
-            ref={buttonContainer}
+          
           >
             <Link
               href="/about"
