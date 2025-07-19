@@ -150,7 +150,7 @@ const Services = () => {
           className="basis-1/2  sm:pl-8"
           ref={el => { imageRefs.current[0] = el; }}
         >
-          <Image src={Image1} alt={"UI/UX Design"} />
+          <Image src={Image1} alt="UI/UX Design service illustration" />
         </div>
       </div>
 
@@ -162,7 +162,7 @@ const Services = () => {
           className="basis-1/2 sm:pr-8"
           ref={el => { imageRefs.current[1] = el; }}
         >
-          <Image src={Image2} alt={"Full-Stack Development"} />
+          <Image src={Image2} alt="Full-Stack Web Development service illustration" />
         </div>
         <div
           className="basis-1/2 flex flex-col items-center md:items-start"
@@ -286,7 +286,7 @@ const Services = () => {
           className="basis-1/2  sm:pl-8"
           ref={el => { imageRefs.current[2] = el; }}
         >
-          <Image src={Image3} alt={"AI & Automation"} />
+          <Image src={Image3} alt="AI Automation service illustration" />
         </div>
       </div>
     </div>

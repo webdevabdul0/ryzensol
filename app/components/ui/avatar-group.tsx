@@ -10,7 +10,7 @@ interface AvatarProps {
 const Avatar: React.FC<AvatarProps> = ({ src, alt, fallback }) => (
   <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-gray-200 flex items-center justify-center text-lg font-semibold text-gray-600">
     {src ? (
-      <Image src={src} alt={alt} width={40} height={40} className="object-cover w-full h-full" />
+      <Image src={src} alt={alt || "User avatar"} width={40} height={40} className="object-cover w-full h-full" />
     ) : (
       <span>{fallback}</span>
     )}

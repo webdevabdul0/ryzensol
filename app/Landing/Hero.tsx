@@ -19,8 +19,9 @@ gsap.registerPlugin(ScrollTrigger);
 const HeroVideoBg = dynamic(() => import("../components/HeroVideoBg"), { ssr: false });
 
 const AVATARS = [
-  { src: "/Contact/1.png", alt: "Client 1", fallback: "A" },
-  { src: "/Contact/5.png", alt: "Client 5", fallback: "E" },
+  { src: "/Contact/1.png", alt: "Client 1", fallback: "Q" },
+  { src: "/Contact/2.png", alt: "Client 5", fallback: "P" },
+  { src: "/Contact/3.png", alt: "Client 5", fallback: "B" },
 ];
 
 const Hero = () => {
@@ -58,11 +59,12 @@ const Hero = () => {
   }, []);
 
   return (
-    <section
-      id="hero-section"
-      ref={heroSectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 overflow-hidden"
-    >
+    <main>
+      <section
+        id="hero-section"
+        ref={heroSectionRef}
+        className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 overflow-hidden"
+      >
       {/* Background Video (clipped to section) */}
       <div ref={videoRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">
         <HeroVideoBg className="w-full h-full" />
@@ -169,12 +171,13 @@ const Hero = () => {
       <div className="w-full flex flex-col items-center md:items-start md:w-auto md:absolute md:left-8 md:bottom-36 mb-8 sm:mb-10 md:mb-0 z-20">
         <AvatarGroup avatars={AVATARS} max={3} />
         <span className="mt-3 text-white/70  text-sm sm:text-base font-medium drop-shadow-lg text-center md:text-left">
-          Driving Results For 1,500+ Leading Brands
+          Driving Results For 100+ Leading Brands
         </span>
       </div>
      
       
     </section>
+    </main>
   );
 };
 

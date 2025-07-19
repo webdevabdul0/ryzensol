@@ -17,38 +17,24 @@ const Page: React.FC = () => {
         </header>
         <main id="main-content" className="w-full">
           <Hero />
-         
-         <div id="Partners">
-          <Partners />
-
-         </div>
-         
-          <div id="Services">
+          <section id="Partners">
+            <Partners />
+          </section>
+          <section id="Services">
             <ExclusiveServices />
-          </div>
-          
-        
-          <div id="Portfolio" >
+          </section>
+          <section id="Portfolio">
             <Portfolio />
-          </div>
-
-          
-
-          <div id="Testimonials">
+          </section>
+          <section id="Testimonials">
             <Testimonials />
-          </div>
-
-
-         
-
-          
-          <div  className="w-full flex flex-col items-center">
+          </section>
+          <section className="w-full flex flex-col items-center">
             <Services />
-          </div>
-         
-          <div id="Contact" className="w-full flex flex-row items-center mt-20 ">
+          </section>
+          <section id="Contact" className="w-full flex flex-row items-center mt-20 ">
             <Contact />
-          </div>
+          </section>
         </main>
       </div>
       <footer className="w-full relative">

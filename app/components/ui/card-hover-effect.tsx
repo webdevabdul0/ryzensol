@@ -35,7 +35,7 @@ export const HoverEffect = ({
             <div className="relative h-48 w-full overflow-hidden">
               <Image
                 src={item.image}
-                alt={item.title}
+                alt={`Portfolio project: ${item.title}`}
                 layout="fill"
                 objectFit="cover"
                 className="transition-transform duration-300 group-hover:scale-105"

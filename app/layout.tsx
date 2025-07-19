@@ -13,8 +13,79 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Ryzen Solutions",
-  description: "Ryzen Solutions – Full-Service Digital Agency: UI/UX Design, AI Automation, Web Development, WordPress, Branding, SEO, Digital Marketing, Hosting & Maintenance.",
+  title: "Ryzen Solutions | Full-Service Digital Agency | UI/UX, AI, Web Development, SEO, Branding",
+  description:
+    "Ryzen Solutions is a full-service digital agency specializing in UI/UX Design, AI Automation, Web Development, WordPress, Branding, SEO, Digital Marketing, and Hosting & Maintenance. We help businesses thrive with creative, scalable, and results-driven solutions.",
+  keywords: [
+    "Ryzen Solutions",
+    "Digital Agency",
+    "UI/UX Design",
+    "AI Automation",
+    "Web Development",
+    "WordPress",
+    "Branding",
+    "SEO",
+    "Digital Marketing",
+    "Hosting",
+    "Maintenance",
+    "Creative Agency",
+    "Business Solutions",
+    "Next.js",
+    "React",
+    "Figma",
+    "Automation",
+    "Lead Generation",
+    "Web Design",
+    "Web App Development"
+  ],
+  openGraph: {
+    title: "Ryzen Solutions | Full-Service Digital Agency",
+    description:
+      "Ryzen Solutions delivers UI/UX Design, AI Automation, Web Development, Branding, SEO, and more. Empowering brands with innovation and digital excellence.",
+    url: "https://ryzensolutions.com/",
+    siteName: "Ryzen Solutions",
+    images: [
+      {
+        url: "/public/Portfolio/project (6).jpg",
+        width: 1200,
+        height: 630,
+        alt: "Ryzen Solutions Portfolio Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@ryzensolutions",
+    title: "Ryzen Solutions | Full-Service Digital Agency",
+    description:
+      "Ryzen Solutions delivers UI/UX Design, AI Automation, Web Development, Branding, SEO, and more. Empowering brands with innovation and digital excellence.",
+    images: [
+      "/public/Portfolio/project (6).jpg"
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
+  alternates: {
+    canonical: "https://ryzensolutions.com/",
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +98,41 @@ export default function RootLayout({
       lang="en"
       className="dark bg-background text-primaryText overflow-x-hidden"
     >
-      <head></head>
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Organization & Website Structured Data for SEO */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Ryzen Solutions",
+          "url": "https://ryzensolutions.com/",
+          "logo": "https://ryzensolutions.com/favicon.ico",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "email": "Global.business@ryzensol.com",
+              "contactType": "customer support",
+              "areaServed": "Global",
+              "availableLanguage": ["English"]
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/ryzensolutions"
+          ]
+        }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "url": "https://ryzensolutions.com/",
+          "name": "Ryzen Solutions",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ryzensolutions.com/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }) }} />
+      </head>
       <body className={`${manrope.variable} antialiased`}>
         {/* Main App Content */}
         <LenisProvider>

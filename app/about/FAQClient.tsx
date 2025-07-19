@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
-import Head from "next/head";
-import FAQClient from "./FAQClient";
+"use client";
+import React, { useRef, useEffect } from "react";
+import Qna from "../components/Qna";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const QuestionsAnswers = [
   {
@@ -41,40 +43,61 @@ const QuestionsAnswers = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "FAQ | Ryzen Solutions - Frequently Asked Questions",
-  description: "Find answers to common questions about Ryzen Solutions, our digital agency services, technologies, project types, and how to contact us for your next project.",
+const FAQClient = () => {
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    // Setup scrollerProxy for Lenis smooth scroll
+    if (!window.ScrollTriggerProxySet) {
+      ScrollTrigger.scrollerProxy(window, {
+        scrollTop(value) {
+          if (value !== undefined) {
+            window.scrollTo(0, value);
+          }
+          return window.scrollY;
+        },
+        getBoundingClientRect() {
+          return {
+            top: 0,
+            left: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+      });
+      window.ScrollTriggerProxySet = true;
+    }
+    if (headingRef.current) {
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, []);
+  return (
+    <div className="my-12 mx-5  max-w-[1440px]">
+      <div className="flex flex-col items-start">
+        <h2 ref={headingRef} className="text-2xl md:text-5xl font-bold text-start mb-8 sm:mb-16 ">
+          Frequently Asked Questions
+        </h2>
+        <Qna items={QuestionsAnswers} />
+      </div>
+    </div>
+  );
 };
 
-export default function FAQPage() {
-  return (
-    <>
-      <Head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            ...QuestionsAnswers.map(q => ({
-              "@type": "Question",
-              "name": q.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": q.answer
-              }
-            }))
-          ],
-          "url": "https://ryzensol.com/about#Faq"
-        }) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ryzensol.com/" },
-            { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://ryzensol.com/about#Faq" }
-          ]
-        }) }} />
-      </Head>
-      <FAQClient />
-    </>
-  );
-}
+export default FAQClient; 
