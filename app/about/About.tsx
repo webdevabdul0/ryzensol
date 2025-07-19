@@ -74,7 +74,7 @@ useEffect(() => {
 
 
   return (
-<div className="max-w-[1440px] mx-auto py-24 px-4 text-black ">
+<div className="max-w-[1440px] mx-auto py-24 px-5 text-black ">
 
 
 

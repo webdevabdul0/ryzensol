@@ -61,7 +61,7 @@ const Hero = () => {
     <section
       id="hero-section"
       ref={heroSectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 rounded-b-3xl overflow-hidden"
+      className="relative min-h-screen w-full flex flex-col justify-between bg-background text-primaryText sm:pt-12 overflow-hidden"
     >
       {/* Background Video (clipped to section) */}
       <div ref={videoRef} className="absolute inset-0 w-full h-full pointer-events-none z-0">

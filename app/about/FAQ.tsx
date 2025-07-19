@@ -89,7 +89,7 @@ const FAQ = () => {
     };
   }, []);
   return (
-    <div className="my-12 mx-5 xl:mx-0 max-w-[1440px]">
+    <div className="my-12 mx-5  max-w-[1440px]">
       <div className="flex flex-col items-start">
         <h2 ref={headingRef} className="text-2xl md:text-5xl font-bold text-start mb-8 sm:mb-16 ">
           Frequently Asked Questions
