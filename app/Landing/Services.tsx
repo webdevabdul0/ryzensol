@@ -16,45 +16,63 @@ const Services = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     sectionRefs.current.forEach((section, idx) => {
       const image = imageRefs.current[idx];
       const content = contentRefs.current[idx];
       if (section && image && content) {
-        // Parallax image animation
+        // Parallax effect for image
         gsap.fromTo(
           image,
-          { opacity: 0, y: 60 },
+          { opacity: 0, y: 80 },
           {
             opacity: 1,
             y: 0,
-            duration: isMobile ? 0.6 : 1,
+            duration: 1.2,
             ease: "power3.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
-              toggleActions: "play none none none",
+              start: "top 90%",
+              toggleActions: "play none none reverse",
             },
           }
         );
-        // Content animation
+        // Parallax effect for content (slower)
         gsap.fromTo(
           content,
-          { opacity: 0, y: 60 },
+          { opacity: 0, y: 120 },
           {
             opacity: 1,
             y: 0,
-            duration: isMobile ? 0.7 : 1.2,
+            duration: 1.5,
             ease: "power3.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
-              toggleActions: "play none none none",
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+            delay: 0.1,
+            onStart: () => {
+              // Stagger text reveal inside content
+              const textEls = content.querySelectorAll(
+                "h5, h2, p, ul > li"
+              );
+              gsap.fromTo(
+                textEls,
+                { opacity: 0, y: 40 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.7,
+                  stagger: 0.12,
+                  ease: "power3.out",
+                }
+              );
             },
           }
         );
       }
     });
+    // Cleanup
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };

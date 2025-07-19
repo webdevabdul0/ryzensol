@@ -180,16 +180,16 @@ const Testimonials = () => {
   // --- Auto-advance every 10 seconds ---
   const startAutoAdvance = () => {
     if (autoAdvanceRef.current) clearInterval(autoAdvanceRef.current);
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     autoAdvanceRef.current = setInterval(() => {
       handleNext();
-    }, isMobile ? 16000 : 10000); // slower auto-advance on mobile
+    }, 10000);
   };
   useEffect(() => {
     startAutoAdvance();
     return () => {
       if (autoAdvanceRef.current) clearInterval(autoAdvanceRef.current);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current, visibleCount]);
 
   const handlePrev = () => {

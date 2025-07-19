@@ -11,7 +11,7 @@ const Partners = () => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
     // Heading animation
     if (headingRef.current) {
       gsap.fromTo(
@@ -20,7 +20,7 @@ const Partners = () => {
         {
           opacity: 1,
           y: 0,
-          duration: isMobile ? 0.6 : 1,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: headingRef.current,
@@ -30,6 +30,7 @@ const Partners = () => {
         }
       );
     }
+  
     // Parallax scroll-up animation for section content
     if (sectionRef.current && contentRef.current) {
       gsap.fromTo(
@@ -41,7 +42,7 @@ const Partners = () => {
         {
           opacity: 1,
           y: 0,
-          duration: isMobile ? 0.7 : 1.2,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -51,6 +52,7 @@ const Partners = () => {
         }
       );
     }
+  
     return () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
