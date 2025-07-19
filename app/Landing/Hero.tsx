@@ -16,9 +16,7 @@ const HeroVideoBg = dynamic(() => import("../components/HeroVideoBg"), { ssr: fa
 
 const AVATARS = [
   { src: "/Contact/1.png", alt: "Client 1", fallback: "A" },
-  { src: "/Contact/2.png", alt: "Client 2", fallback: "B" },
-  { src: "/Contact/3.png", alt: "Client 3", fallback: "C" },
-  { src: "/Contact/4.png", alt: "Client 4", fallback: "D" },
+  { src: "/Contact/5.png", alt: "Client 5", fallback: "E" },
 ];
 
 const Hero = () => {

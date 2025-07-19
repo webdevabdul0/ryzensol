@@ -1,10 +1,9 @@
 "use client"
 
 import React from "react";
-import HeroVideoBg from "../components/HeroVideoBg";
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useRef } from "react";
+
+import { BackgroundGradientAnimation } from "../components/ui/background-gradient-animation";
 
 const SERVICE_OPTIONS = [
   "UI/UX Design",
@@ -19,7 +18,7 @@ const SERVICE_OPTIONS = [
 
 const Contact = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+  const videoRef = useRef<HTMLDivElement>(null);
 
   const [form, setForm] = React.useState({
     name: "",
@@ -61,9 +60,20 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <section ref={sectionRef} className="relative bg-background z-20 w-full flex flex-col justify-center items-center py-20 lg:py-[120px] text-white overflow-hidden">
-       
+    <BackgroundGradientAnimation
+  gradientBackgroundStart="rgb(0, 0, 0)"
+  gradientBackgroundEnd="rgb(0, 0, 0)"
+  firstColor="255, 105, 180"   // Hot pink
+  secondColor="0, 255, 255"    // Cyan
+  thirdColor="0, 191, 255"     // Deep sky blue
+  fourthColor="138, 43, 226"   // Blue violet
+  fifthColor="255, 215, 0"     // Gold
+  pointerColor="255, 20, 147"  // Deep pink
+  blendingValue="screen"       // Softer blend on black background
+  size="80%"
+  interactive={true}
+>
+      <section className="relative z-20 w-full flex flex-col justify-center items-center py-20 lg:py-[120px] text-white overflow-hidden">
         {/* Black Overlay */}
       
         <div className="-mx-4 flex flex-wrap lg:justify-between max-w-[1440px] z-30 px-8 2xl:px-0">
@@ -940,7 +950,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </>
+    </BackgroundGradientAnimation>
   );
 };
 
