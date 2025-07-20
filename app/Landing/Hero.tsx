@@ -4,10 +4,10 @@ import dynamic from "next/dynamic";
 import { useRef } from "react";
 import gsap from "gsap";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 
 import { AvatarGroup } from "../components/ui/avatar-group";
-import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Utility to detect mobile
@@ -24,6 +24,33 @@ const AVATARS = [
   { src: "/Contact/3.png", alt: "Client 5", fallback: "B" },
 ];
 
+// CalendlyEmbed component for inline widget
+const CalendlyEmbed = ({ url }: { url: string }) => {
+  // Utility to detect mobile
+  const getResponsiveMinHeight = () => {
+    if (typeof window === "undefined") return 450;
+    if (window.innerHeight < 600) return window.innerHeight * 0.33;
+    return window.innerHeight * 0.7;
+  };
+  useEffect(() => {
+    const scriptId = "calendly-widget-script";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.head.appendChild(script);
+    }
+  }, []);
+  return (
+    <div
+      className="calendly-inline-widget"
+      data-url={url}
+      style={{ minHeight: getResponsiveMinHeight(), width: "100%" }}
+    />
+  );
+};
+
 const Hero = () => {
   const buttonContainer = useRef<HTMLDivElement>(null);
   const headerText = useRef<HTMLHeadingElement>(null);
@@ -31,6 +58,23 @@ const Hero = () => {
   const colorWipeRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLDivElement>(null);
+  const [isCalendlyOpen, setCalendlyOpen] = useState(false);
+  const [calendlyKey, setCalendlyKey] = useState(0);
+
+  const openCalendly = () => {
+    setCalendlyKey((prev) => prev + 1);
+    setCalendlyOpen(true);
+  };
+
+  // Remove Calendly script when modal closes
+  useEffect(() => {
+    if (!isCalendlyOpen) {
+      const script = document.getElementById("calendly-widget-script");
+      if (script) {
+        script.remove();
+      }
+    }
+  }, [isCalendlyOpen]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -60,6 +104,25 @@ const Hero = () => {
 
   return (
     <main>
+      {/* Calendly Modal */}
+      {isCalendlyOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="bg-background overflow-hidden rounded-2xl shadow-2xl p-2 sm:p-4 relative max-w-3xl w-full mx-2 sm:mx-0 flex flex-col items-center min-h-[60vh] sm:min-h-[70vh] h-[70vh] sm:h-[80vh]">
+            {/* Modal Header */}
+            <div className="w-full flex flex-row items-center justify-between mb-4 px-2 sm:px-4">
+              <h2 className="text-lg sm:text-2xl font-semibold text-primaryText">Schedule a Call with us</h2>
+              <button
+                className="text-3xl sm:text-4xl text-textMuted hover:text-primary transition z-[9999] bg-background/90 rounded-full p-2 sm:p-3 ml-4"
+                onClick={() => setCalendlyOpen(false)}
+                aria-label="Close"
+              >
+                &times;
+              </button>
+            </div>
+            <CalendlyEmbed key={calendlyKey} url="https://calendly.com/webdevabdul/30min" />
+          </div>
+        </div>
+      )}
       <section
         id="hero-section"
         ref={heroSectionRef}
@@ -111,34 +174,12 @@ const Hero = () => {
             className="flex flex-row justify-end mt-2 sm:mt-3 md:mt-4 gap-2 sm:gap-4 w-full sm:w-auto"
             ref={buttonContainer}
           >
-            <Link
-              href="/about"
-              className="
-                shadow-[0_4px_14px_0_rgb(0,118,255,39%)]
-                hover:shadow-[0_6px_20px_rgba(0,118,255,23%)]
-                hover:bg-[rgba(0,118,255,0.9)]
-                px-3 sm:px-7 md:px-8
-                py-3
-                bg-[#0070f3]
-                rounded-full
-                text-white
-                font-light
-                transition
-                duration-200
-                ease-linear
-                text-sm
-                sm:text-sm
-                md:text-base
-                lg:text-lg
-                flex
-                justify-center
-                items-center
-                w-full
-                sm:w-auto
-              "
+            <button
+              onClick={openCalendly}
+              className="shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-3 sm:px-7 md:px-8 py-3 bg-[#0070f3] rounded-full text-white font-light transition duration-200 ease-linear text-sm sm:text-sm md:text-base lg:text-lg flex justify-center items-center w-full sm:w-auto"
             >
-              About Us
-            </Link>
+              Book a Free Call
+            </button>
             <a href="#Contact" className="w-full sm:w-auto">
               <button className="p-[2px] sm:p-[3px] relative rounded-full w-full sm:w-auto">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full" />
@@ -174,8 +215,8 @@ const Hero = () => {
           Driving Results For 100+ Leading Brands
         </span>
       </div>
-     
-      
+
+
     </section>
     </main>
   );

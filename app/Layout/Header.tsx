@@ -9,6 +9,7 @@ import Link from "next/link";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const [isCalendlyOpen, setCalendlyOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenu(!menu);
@@ -16,6 +17,27 @@ const Header = () => {
 
   return (
     <div className="w-full bg-black ">
+
+{/* Calendly Modal */}
+{isCalendlyOpen && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="bg-background rounded-2xl shadow-2xl p-4 sm:p-8 relative max-w-2xl w-full flex flex-col items-center">
+      <button
+        className="absolute top-2 right-2 text-xl text-textMuted hover:text-primary transition"
+        onClick={() => setCalendlyOpen(false)}
+        aria-label="Close"
+      >
+        &times;
+      </button>
+      <iframe
+        src="https://calendly.com/ryzensol/free-call"
+        className="w-[90vw] max-w-xl h-[70vh] rounded-lg border-none"
+        title="Book a Free Call with Ryzen Solutions"
+        allow="camera; microphone; fullscreen"
+      />
+    </div>
+  </div>
+)}
 
 <div className="max-w-[1440px] mx-auto pt-12 pb-6 ">
 
@@ -73,11 +95,12 @@ const Header = () => {
                   <a href="mailto:global.business@ryzensol.com" aria-label="Email">
                     <svg fill="white" viewBox="0 0 24 24" className="w-6 h-6"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 20V8.99l8 7 8-7V20H4z"/></svg>
                   </a>
-                  <a href="#Contact">
-                    <button className="px-5 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition">
-                      Get in Touch
-                    </button>
-                  </a>
+                  <button
+                    className="px-5 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition"
+                    onClick={() => setCalendlyOpen(true)}
+                  >
+                    Book a Free Call
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -126,11 +149,12 @@ const Header = () => {
               </a>
             </li>
           </ul>
-          <a href="#Contact">
-            <button className="px-5 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition">
-              Get in Touch
-            </button>
-          </a>
+          <button
+            className="px-5 py-2 rounded-full bg-primary text-white font-semibold hover:bg-opacity-90 transition"
+            onClick={() => setCalendlyOpen(true)}
+          >
+            Book a Free Call
+          </button>
         </div>
       </div>
 
