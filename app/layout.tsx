@@ -13,7 +13,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Ryzen Solutions | Full-Service Digital Agency | UI/UX, AI, Web Development, SEO, Branding",
+  title:
+    "Ryzen Solutions | Full-Service Digital Agency | UI/UX, AI, Web Development, SEO, Branding",
   description:
     "Ryzen Solutions is a full-service digital agency specializing in UI/UX Design, AI Automation, Web Development, WordPress, Branding, SEO, Digital Marketing, and Hosting & Maintenance. We help businesses thrive with creative, scalable, and results-driven solutions.",
   keywords: [
@@ -36,17 +37,17 @@ export const metadata: Metadata = {
     "Automation",
     "Lead Generation",
     "Web Design",
-    "Web App Development"
+    "Web App Development",
   ],
   openGraph: {
     title: "Ryzen Solutions | Full-Service Digital Agency",
     description:
       "Ryzen Solutions delivers UI/UX Design, AI Automation, Web Development, Branding, SEO, and more. Empowering brands with innovation and digital excellence.",
-    url: "https://ryzensolutions.com/",
+    url: "https://ryzensol.com/",
     siteName: "Ryzen Solutions",
     images: [
       {
-        url: "/public/Portfolio/project (6).jpg",
+        url: "https://ryzensol.com/Portfolio/project%20(10).jpg", // ✅ updated with full URL and encoded space
         width: 1200,
         height: 630,
         alt: "Ryzen Solutions Portfolio Preview",
@@ -57,13 +58,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@ryzensolutions",
+    site: "@ryzensol",
     title: "Ryzen Solutions | Full-Service Digital Agency",
     description:
       "Ryzen Solutions delivers UI/UX Design, AI Automation, Web Development, Branding, SEO, and more. Empowering brands with innovation and digital excellence.",
-    images: [
-      "/public/Portfolio/project (6).jpg"
-    ],
+    images: ["https://ryzensol.com/Portfolio/project%20(10).jpg"], // ✅ full URL
   },
   robots: {
     index: true,
@@ -84,7 +83,7 @@ export const metadata: Metadata = {
     apple: "/favicon.ico",
   },
   alternates: {
-    canonical: "https://ryzensolutions.com/",
+    canonical: "https://ryzensol.com/",
   },
 };
 
@@ -102,36 +101,44 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* Organization & Website Structured Data for SEO */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "Ryzen Solutions",
-          "url": "https://ryzensolutions.com/",
-          "logo": "https://ryzensolutions.com/favicon.ico",
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "email": "Global.business@ryzensol.com",
-              "contactType": "customer support",
-              "areaServed": "Global",
-              "availableLanguage": ["English"]
-            }
-          ],
-          "sameAs": [
-            "https://www.linkedin.com/company/ryzensolutions"
-          ]
-        }) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "url": "https://ryzensolutions.com/",
-          "name": "Ryzen Solutions",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://ryzensolutions.com/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Ryzen Solutions",
+              url: "https://ryzensol.com/",
+              logo: "https://ryzensol.com/favicon.ico",
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  email: "Global.business@ryzensol.com",
+                  contactType: "customer support",
+                  areaServed: "Global",
+                  availableLanguage: ["English"],
+                },
+              ],
+              sameAs: ["https://www.linkedin.com/company/ryzensol"],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              url: "https://ryzensol.com/",
+              name: "Ryzen Solutions",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://ryzensol.com/?s={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
       </head>
       <body className={`${manrope.variable} antialiased`}>
         {/* Main App Content */}
