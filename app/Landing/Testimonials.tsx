@@ -2,15 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 
-
-
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 // Utility to detect mobile
-const isMobile = () =>
-  typeof window !== "undefined" && window.innerWidth < 640;
+const isMobile = () => typeof window !== "undefined" && window.innerWidth < 640;
 
 const testimonial = [
   {
@@ -214,34 +210,30 @@ const Testimonials = () => {
     return null;
   }
 
-
-
-
-
   return (
     <section className="relative py-4 sm:py-24 ">
       {/* Gradient blobs */}
-      
+
       {/* Testimonial content */}
       <div className="relative z-10">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col items-center">
             <div className="text-center">
-            <div className="flex flex-col items-center">
-   <h2 ref={headingRef} className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8">
-        What Our Clients Say
-      </h2>
+              <div className="flex flex-col items-center">
+                <h2
+                  ref={headingRef}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8"
+                >
+                  What Our Clients Say
+                </h2>
 
-      <p
-              
-              className="text-base md:text-lg lg:text-2xl text-center text-gray-800 mb-4 max-w-3xl"
-            >
-              Discover how our creative solutions and dedicated service have made a real impact for our clients. Here’s what they have to say about working with Ryzen Solutions.
-            </p>
-    
-    </div>
-    </div>
-           
+                <p className="text-base md:text-lg lg:text-2xl text-center text-gray-800 mb-4 max-w-3xl">
+                  Discover how our creative solutions and dedicated service have
+                  made a real impact for our clients. Here’s what they have to
+                  say about working with Ryzen Solutions.
+                </p>
+              </div>
+            </div>
 
             <div className="relative mt-10 md:mt-24 md:order-2 w-full">
               <div className="absolute -inset-x-1 inset-y-16 md:-inset-x-2 md:-inset-y-6 pointer-events-none">
@@ -260,24 +252,43 @@ const Testimonials = () => {
                     className={`z-10 p-2 absolute left-0 sm:-left-10 rounded-full bg-white shadow-md border border-gray-200 mr-4 transition-opacity hover:bg-gray-100`}
                     aria-label="Previous testimonials"
                   >
-                    <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    <svg
+                      className="w-6 h-6 text-gray-700"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 19l-7-7 7-7"
+                      />
                     </svg>
                   </button>
                 )}
                 <div
                   className="overflow-hidden w-full"
-                  style={{ maxWidth: cardWidth * visibleCount + gap * (visibleCount - 1) }}
+                  style={{
+                    maxWidth:
+                      cardWidth * visibleCount + gap * (visibleCount - 1),
+                  }}
                   onTouchStart={handleTouchStart}
                   onTouchMove={handleTouchMove}
                   onTouchEnd={handleTouchEnd}
                 >
                   <div
                     ref={transitionRef}
-                    className={`flex ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
+                    className={`flex ${
+                      isTransitioning
+                        ? "transition-transform duration-500 ease-in-out"
+                        : ""
+                    }`}
                     style={{
                       transform: `translateX(${translateX}px)`,
-                      minWidth: cardWidth * extendedTestimonials.length + gap * (extendedTestimonials.length - 1),
+                      minWidth:
+                        cardWidth * extendedTestimonials.length +
+                        gap * (extendedTestimonials.length - 1),
                     }}
                   >
                     {extendedTestimonials.map((item, idx) => (
@@ -287,7 +298,8 @@ const Testimonials = () => {
                         style={{
                           minWidth: cardWidth,
                           maxWidth: cardWidth,
-                          marginRight: idx !== extendedTestimonials.length - 1 ? gap : 0,
+                          marginRight:
+                            idx !== extendedTestimonials.length - 1 ? gap : 0,
                         }}
                       >
                         <div className="flex flex-col justify-between flex-1 p-6 lg:py-8 lg:px-7">
@@ -306,18 +318,19 @@ const Testimonials = () => {
                               ))}
                             </div>
                             <blockquote className="flex-1 mt-8">
-                              <p className="text-lg leading-relaxed text-gray-900 font-pj">{item.quote}</p>
+                              <p className="text-lg leading-relaxed text-gray-900 font-pj">
+                                {item.quote}
+                              </p>
                             </blockquote>
                           </div>
                           <div className="flex items-center mt-8">
-                            <img
-                              className="flex-shrink-0 object-cover rounded-full w-11 h-11"
-                              src={AVATARS[idx % AVATARS.length]}
-                              alt={item.name}
-                            />
                             <div className="ml-4">
-                              <p className="text-base font-bold text-gray-900 font-pj">{item.name}</p>
-                              <p className="mt-0.5 text-sm font-pj text-gray-600">{item.title}</p>
+                              <p className="text-base font-bold text-gray-900 font-pj">
+                                {item.name}
+                              </p>
+                              <p className="mt-0.5 text-sm font-pj text-gray-600">
+                                {item.title}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -331,8 +344,18 @@ const Testimonials = () => {
                     className={`z-10 p-2 absolute right-0  sm:-right-10 rounded-full bg-white shadow-md border border-gray-200 ml-4 transition-opacity hover:bg-gray-100`}
                     aria-label="Next testimonials"
                   >
-                    <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-6 h-6 text-gray-700"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </button>
                 )}
